@@ -1,50 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp"
     tools:context="io.github.pavanrkadave.rupeediary.MainActivity">
 
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/money_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/spent_money_editText"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/money_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/spent_money_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/money_spent"
+                android:inputType="number" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/description_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/money_spent" />
+            android:layout_marginTop="16dp">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/description_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/description_text" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/description_layout"
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/save_expene"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:elevation="8dp"
+            android:text="Save Details" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/money_layout"
-        android:layout_marginTop="24dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/description_editText"
+        <ListView
+            android:id="@+id/expense_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/description_text" />
+            android:divider="@android:color/transparent">
 
-    </android.support.design.widget.TextInputLayout>
+        </ListView>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/save_expene"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/description_layout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        android:elevation="8dp"
-        android:text="Save Details" />
+</LinearLayout>
 
 
-</RelativeLayout>
