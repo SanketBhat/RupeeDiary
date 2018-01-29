@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RupeeDiary</string>
+    <string name="money_spent">Enter Amount</string>
+    <string name="description_text">Enter Description</string>
+</resources>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "86007221832",
+    "firebase_url": "https://rupeediary.firebaseio.com",
+    "project_id": "rupeediary",
+    "storage_bucket": "rupeediary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86007221832:android:964a17a80fd426b4",
+        "android_client_info": {
+          "package_name": "io.github.pavanrkadave.rupeediary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86007221832-pcmie2uqk2v5k1rchrhra1n1oodsl7kn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.pavanrkadave.rupeediary",
+            "certificate_hash": "9cbbafb2193a2dbdefa1efcc913f769353c3586c"
+          }
+        },
+        {
+          "client_id": "86007221832-lvlihcne08inptmhqqj4l1s59o6ldje3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVjvytpLW74ZRenA8fjSHnskHQWxIP4pg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86007221832-lvlihcne08inptmhqqj4l1s59o6ldje3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
