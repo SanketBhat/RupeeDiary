@@ -2,4 +2,6 @@
     <string name="app_name">RupeeDiary</string>
     <string name="money_spent">Enter Amount</string>
     <string name="description_text">Enter Description</string>
+    <string name="show_expenses">Show Expenses</string>
+    <string name="expenses">Expenses</string>
 </resources>

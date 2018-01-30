@@ -18,7 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExpenseActivity"></activity>
+
+        <activity
+            android:name=".ExpenseActivity"
+            android:label="@string/expenses"
+            android:parentActivityName=".MainActivity">
+            <!--Metadata to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
     </application>
 
 </manifest>

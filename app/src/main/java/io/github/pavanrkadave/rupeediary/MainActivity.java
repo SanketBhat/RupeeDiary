@@ -5,6 +5,8 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -19,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText moneyInput;
     private TextInputEditText descriptionInput;
     private Button saveData;
-    private Button intentExpenses;
+
+    //Intent to show the expenses
+    Intent intent;
 
 
     //Firebase Database Reference.
@@ -31,20 +35,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        intent = new Intent(MainActivity.this, ExpenseActivity.class);
+
         expenseReference = FirebaseDatabase.getInstance().getReference("expenses");
 
         moneyInput = findViewById(R.id.spent_money_editText);
         descriptionInput = findViewById(R.id.description_editText);
         saveData = findViewById(R.id.save_expene);
-        intentExpenses = findViewById(R.id.show_expenses);
-
-        intentExpenses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,ExpenseActivity.class);
-                startActivity(intent);
-            }
-        });
 
         saveData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +50,28 @@ public class MainActivity extends AppCompatActivity {
                 saveExpenses();
             }
         });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.show_expenses:
+                startActivity(intent);
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
 
     }
 
@@ -69,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Expense Added!", Toast.LENGTH_SHORT).show();
             moneyInput.setText("");
             descriptionInput.setText("");
+            startActivity(intent);
 
         } else {
             //If Either of the field is empty Toast a Message.

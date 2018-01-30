@@ -2,7 +2,9 @@ package io.github.pavanrkadave.rupeediary;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,21 +19,25 @@ public class ExpenseActivity extends AppCompatActivity {
 
     private ListView expenseList;
 
-    List<ExpenseObject> expensesList;
+    private List<ExpenseObject> expensesList;
 
     //Firebase Database Reference.
     private DatabaseReference expenseReference;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
 
+        progressBar = findViewById(R.id.progress_bar);
+
         expenseReference = FirebaseDatabase.getInstance().getReference("expenses");
 
         expenseList = findViewById(R.id.expense_list);
 
         expensesList = new ArrayList<>();
+
     }
 
     @Override
@@ -49,6 +55,7 @@ public class ExpenseActivity extends AppCompatActivity {
                 }
 
                 ExpenseAdapter adapter = new ExpenseAdapter(ExpenseActivity.this,expensesList);
+                progressBar.setVisibility(View.GONE);
                 expenseList.setAdapter(adapter);
             }
 
