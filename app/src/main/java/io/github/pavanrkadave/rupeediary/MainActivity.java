@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -34,24 +35,33 @@ public class MainActivity extends AppCompatActivity {
     //Firebase Database Reference.
     private DatabaseReference expenseReference;
 
+    //Firebase Auth Variables
+    private FirebaseAuth mAuth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Expense Activity intent to display the expenses.
         intent = new Intent(MainActivity.this, ExpenseActivity.class);
 
+        //Firebase Database Reference
         expenseReference = FirebaseDatabase.getInstance().getReference("expenses");
 
+        //UI Initialization
         moneyInput = findViewById(R.id.spent_money_editText);
         descriptionInput = findViewById(R.id.description_editText);
         saveData = findViewById(R.id.save_expene);
 
+        //Handling click event on the save data button.
         saveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                //Methond invoke to save the data.
                 saveExpenses();
             }
         });
@@ -62,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
+        //Inflate the menu_main.xml to display the menu.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -69,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        //Handling the click event on the menu item.
         switch (item.getItemId()) {
 
             case R.id.show_expenses:
@@ -81,20 +93,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveExpenses() {
+        //Extract text from the text fields.
         String moneySpent = moneyInput.getText().toString();
         String description = descriptionInput.getText().toString();
+
+        //get the date and day as strings fro the Simpledate format class.
         String date = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(new Date());
         String day = new SimpleDateFormat("EEEE",Locale.getDefault()).format(new Date());
-        Log.v("Date Today",date);
 
-
+        //If the text field is not empty save the data to firebase.
         if (!TextUtils.isEmpty(moneySpent) && !TextUtils.isEmpty(description)) {
             //Save the data
             ExpenseObject newExpense = new ExpenseObject(moneySpent, description, date,day);
             expenseReference.push().setValue(newExpense);
             Toast.makeText(this, "Expense Added!", Toast.LENGTH_SHORT).show();
+
+            //Clear the field once data is saved to cloud.
             moneyInput.setText("");
             descriptionInput.setText("");
+
+            //Start the ExpenseActivity.
             startActivity(intent);
 
         } else {
