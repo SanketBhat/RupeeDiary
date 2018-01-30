@@ -8,13 +8,15 @@ public class ExpenseObject {
 
     private String money;
     private String description;
-    private String time;
+    private String dateToday;
+    private String dayToday;
 
 
-    public ExpenseObject(String money, String description, String time) {
+    public ExpenseObject(String money, String description, String dateToday,String dayToday) {
         this.money = money;
         this.description = description;
-        this.time = time;
+        this.dateToday = dateToday;
+        this.dayToday = dayToday;
     }
 
     public ExpenseObject(){ }
@@ -27,8 +29,12 @@ public class ExpenseObject {
         return description;
     }
 
-    public String getTime() {
-        return time;
+    public String getDateToday() {
+        return dateToday;
+    }
+
+    public String getDayToday() {
+        return dayToday;
     }
 }
 

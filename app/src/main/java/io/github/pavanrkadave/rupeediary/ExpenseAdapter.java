@@ -40,8 +40,10 @@ public class ExpenseAdapter extends ArrayAdapter<ExpenseObject> {
         TextView day = listViewItem.findViewById(R.id.day);
 
         ExpenseObject myExpense = expenses.get(position);
-        money.setText(myExpense.getMoney());
+        money.setText(myExpense.getMoney()+ " Rs");
         description.setText(myExpense.getDescription());
+        dateView.setText(myExpense.getDateToday());
+        day.setText(myExpense.getDayToday());
 
 
         return listViewItem;

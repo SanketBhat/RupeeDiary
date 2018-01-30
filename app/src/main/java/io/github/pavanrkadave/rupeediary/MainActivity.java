@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +14,10 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -78,12 +83,14 @@ public class MainActivity extends AppCompatActivity {
     private void saveExpenses() {
         String moneySpent = moneyInput.getText().toString();
         String description = descriptionInput.getText().toString();
+        String date = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(new Date());
+        String day = new SimpleDateFormat("EEEE",Locale.getDefault()).format(new Date());
+        Log.v("Date Today",date);
+
 
         if (!TextUtils.isEmpty(moneySpent) && !TextUtils.isEmpty(description)) {
             //Save the data
-            long unixTime = System.currentTimeMillis() / 1000L;
-            String time = String.valueOf(unixTime);
-            ExpenseObject newExpense = new ExpenseObject(moneySpent, description, time);
+            ExpenseObject newExpense = new ExpenseObject(moneySpent, description, date,day);
             expenseReference.push().setValue(newExpense);
             Toast.makeText(this, "Expense Added!", Toast.LENGTH_SHORT).show();
             moneyInput.setText("");
