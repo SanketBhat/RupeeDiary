@@ -42,8 +42,7 @@ public class ExpenseAdapter extends ArrayAdapter<ExpenseObject> {
         ExpenseObject myExpense = expenses.get(position);
         money.setText(myExpense.getMoney());
         description.setText(myExpense.getDescription());
-        dateView.setText(myExpense.getTime());
-        day.setText(myExpense.getTime());
+
 
         return listViewItem;
     }

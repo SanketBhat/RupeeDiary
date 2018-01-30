@@ -1,5 +1,6 @@
 package io.github.pavanrkadave.rupeediary;
 
+import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,12 +12,15 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
 public class MainActivity extends AppCompatActivity {
 
     //UI Elements of the MainActivity.
     private TextInputEditText moneyInput;
     private TextInputEditText descriptionInput;
     private Button saveData;
+    private Button intentExpenses;
+
 
     //Firebase Database Reference.
     private DatabaseReference expenseReference;
@@ -32,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
         moneyInput = findViewById(R.id.spent_money_editText);
         descriptionInput = findViewById(R.id.description_editText);
         saveData = findViewById(R.id.save_expene);
+        intentExpenses = findViewById(R.id.show_expenses);
+
+        intentExpenses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,ExpenseActivity.class);
+                startActivity(intent);
+            }
+        });
 
         saveData.setOnClickListener(new View.OnClickListener() {
             @Override
